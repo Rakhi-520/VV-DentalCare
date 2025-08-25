@@ -1,0 +1,26 @@
+.case_card {
+  list-style: none;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.06);
+  padding: 0;
+  overflow: hidden;
+  width: 500px;
+}
+
+.case_link { display: block; text-decoration: none; }
+
+.case_meta { padding: 12px; }
+
+.case_title {
+  margin: 4px 0 2px;
+  font-weight: 700;         
+  color: #1d4c82;
+}
+
+.case_text {
+  margin: 0;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.35;
+}

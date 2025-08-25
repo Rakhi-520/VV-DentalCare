@@ -1,0 +1,105 @@
+:root{
+  --brand:#1d4c82;         
+  --brand-700:#163a63;
+  --brand-100:#e7eef7;
+  --accent:#0fb981;
+  --ink:#1d4c82;
+  --line:rgba(226,232,240,.9);
+  --bg:#f6faff;
+}
+
+.pay-wrap{
+  min-height:100%;
+  padding:40px 16px 64px;
+  background:
+    radial-gradient(1200px 600px at 90% -10%, rgba(29,76,130,.14), transparent 60%),
+    radial-gradient(900px 500px at -10% 10%, rgba(15,185,129,.12), transparent 60%),
+    linear-gradient(180deg,#f9fbff,#f3f7ff 30%,#edf5ff 100%);
+  color:var(--ink);
+}
+
+.pay-card{
+  max-width:960px;
+  margin:0 auto;
+  background:#fff;
+  border-radius:18px;
+  border:1px solid var(--line);
+  box-shadow:0 18px 50px rgba(29,76,130,.12),0 8px 24px rgba(16,24,40,.06);
+  overflow:hidden;
+}
+
+.pay-header{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  padding:26px 30px;
+  background:linear-gradient(180deg, rgba(231,238,247,.65), rgba(255,255,255,.85));
+  border-bottom:1px solid var(--line);
+}
+.pay-title{margin:0;font-weight:800;font-size:28px;color:var(--ink);}
+.pay-subtitle{margin:8px 0 0 0;color:var(--ink);opacity:.8;font-size:14px;}
+.pay-code{padding:2px 6px;background:#f1f5f9;border-radius:6px;}
+.pay-badge{
+  padding:6px 12px;border-radius:999px;font-size:12px;color:var(--brand-700);
+  background:var(--brand-100);border:1px solid rgba(29,76,130,.25);white-space:nowrap;
+}
+
+.pay-section{padding:24px 30px;border-bottom:1px dashed var(--line);}
+.pay-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;}
+@media(max-width:860px){.pay-grid{grid-template-columns:1fr;}}
+.pay-field{grid-column:span 6;display:flex;flex-direction:column;gap:6px;}
+.pay-field>span{font-size:13px;}
+.pay-input{
+  width:100%;padding:11px 12px;border-radius:12px;border:1px solid #e5edff;background:#fff;
+  font-size:14px;color:var(--ink);outline:none;transition:box-shadow .18s, border-color .18s;
+}
+.pay-input:focus{border-color:var(--brand);box-shadow:0 0 0 4px rgba(29,76,130,.16);}
+
+.pay-choice{display:flex;flex-wrap:wrap;gap:8px;}
+.choice{
+  display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid #e5edff;background:#fff;
+}
+.choice.is-active{border-color:var(--brand);box-shadow:0 0 0 3px rgba(29,76,130,.12) inset;}
+.choice input{accent-color:var(--brand);}
+
+.pay-cta{display:flex;align-items:end;justify-content:flex-end;}
+.pay-btn{
+  height:44px;padding:0 18px;border-radius:12px;border:1px solid rgba(29,76,130,.9);
+  background:linear-gradient(180deg, var(--brand), var(--brand-700));
+  color:#fff;font-weight:700;font-size:14px;cursor:pointer;
+  box-shadow:0 10px 24px rgba(29,76,130,.25), inset 0 1px 0 rgba(255,255,255,.22);
+  transition:transform .08s, filter .15s;
+}
+.pay-btn:hover{filter:brightness(1.04);}
+.pay-btn:active{transform:translateY(1px) scale(.99);}
+.pay-btn:disabled{opacity:.6;cursor:not-allowed;}
+.pay-btn.ghost{
+  background:#fff;color:var(--ink);border:1px dashed #c7d7ee;box-shadow:none;
+}
+.pay-btn.success{
+  background:linear-gradient(180deg,#13b981,#0a8d61);border-color:#0a8d61;
+}
+
+.pay-alert{
+  margin-top:14px;padding:11px 12px;border-radius:12px;border:1px solid;
+  background:#fef2f2;color:#991b1b;border-color:#fecaca;font-size:14px;
+}
+
+.pay-session h2{margin:0 0 12px 0;color:var(--ink);font-size:20px;}
+.pay-session__head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.pill{padding:6px 10px;border-radius:999px;background:var(--brand-100);border:1px solid rgba(29,76,130,.25);color:var(--brand-700);font-size:12px;}
+
+.upi{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.upi__qr{padding:16px;border-radius:16px;background:#fff;border:1px solid #e5edff;box-shadow:0 10px 22px rgba(29,76,130,.08);}
+.upi__meta{flex:1;min-width:260px;}
+.muted{color:var(--ink);opacity:.75;}
+.code{margin-top:8px;padding:8px 10px;border:1px dashed #c7d7ee;border-radius:10px;background:#fafcff;word-break:break-all;}
+.actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;}
+
+.card{display:flex;flex-direction:column;gap:12px;}
+.card__form{max-width:520px;}
+.row{margin-bottom:10px;}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+.pay-result{padding:24px 30px;}
+.pay-result.success h3{color:#0a8d61;}
+.pay-result.failed h3{color:#b45309;}
+.pay-result.error h3{color:#991b1b;}

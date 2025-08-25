@@ -1,0 +1,234 @@
+openapi: 3.1.0
+info:
+  title: Dental Clinic API
+  version: 1.0.0
+  description: API for dental clinic management system
+  contact:
+    name: API Support
+    email: support@dentalclinic.com
+
+servers:
+  - url: http://localhost:4000/api
+    description: Development server
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            details:
+              type: object
+
+    Service:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        slug:
+          type: string
+        shortDescription:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        heroImage:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+        order:
+          type: number
+        isActive:
+          type: boolean
+
+    Doctor:
+      type: object
+      properties:
+        _id:
+          type: string
+        fullName:
+          type: string
+        role:
+          type: string
+        bio:
+          type: string
+        yearsExperience:
+          type: number
+        avatarUrl:
+          type: string
+        badges:
+          type: array
+          items:
+            type: string
+
+    Appointment:
+      type: object
+      properties:
+        _id:
+          type: string
+        patientName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        serviceId:
+          type: string
+        doctorId:
+          type: string
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+        notes:
+          type: string
+        status:
+          type: string
+          enum: [pending, confirmed, cancelled]
+        createdAt:
+          type: string
+          format: date-time
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: ok
+
+  /services:
+    get:
+      summary: Get all active services
+      responses:
+        '200':
+          description: List of services
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Service'
+
+  /doctors:
+    get:
+      summary: Get all doctors
+      responses:
+        '200':
+          description: List of doctors
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Doctor'
+
+  /appointments:
+    post:
+      summary: Create new appointment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - patientName
+                - email
+                - phone
+                - serviceId
+                - date
+                - time
+              properties:
+                patientName:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                phone:
+                  type: string
+                serviceId:
+                  type: string
+                doctorId:
+                  type: string
+                date:
+                  type: string
+                  format: date
+                time:
+                  type: string
+                notes:
+                  type: string
+      responses:
+        '201':
+          description: Appointment created successfully
+        '400':
+          description: Validation error
+        '409':
+          description: Time slot conflict
+
+  /auth/login:
+    post:
+      summary: Admin login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login successful
+        '401':
+          description: Invalid credentials

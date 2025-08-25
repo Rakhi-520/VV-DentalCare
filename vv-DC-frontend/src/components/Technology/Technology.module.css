@@ -1,0 +1,4 @@
+.technology {
+  background-color: var(--color-background);
+  display: none; /* Hidden as it's integrated into SmileGallery */
+}
